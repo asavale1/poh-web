@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
+  match '/api/submit_answer', to: 'api#submit_answer', via: 'post'
+  match '/api/get_question', to: 'api#get_question', via: 'get'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
