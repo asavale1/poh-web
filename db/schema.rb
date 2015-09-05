@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150905183502) do
+ActiveRecord::Schema.define(version: 20150905200332) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "question"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150905183502) do
     t.integer  "no_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "asked"
   end
 
 end

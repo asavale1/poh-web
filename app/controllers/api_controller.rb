@@ -8,7 +8,6 @@ class ApiController < ApplicationController
 	def get_question
 		q = Question.last
 
-
 		render :json => q.to_json
 	end
 end
