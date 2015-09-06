@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
-  match '/api/submit_answer', to: 'api#submit_answer', via: 'post'
+  match '/api/post_answer', to: 'api#submit_answer', via: 'post'
   match '/api/get_question', to: 'api#get_question', via: 'get'
 
 
