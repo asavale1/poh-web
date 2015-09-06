@@ -1,15 +1,17 @@
 class ApiController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => [:post_answer, :get_question]
-	
+
 	def post_answer
 		puts params
 		q = Question.find(params[:question_id])
 		
 		if(params[:answer] =~ /yes/)
-			puts "Answer is yes"
+			q.yes_count += 1
 		elsif params[:answer] =~ /no/
-			puts "Answer is no"
+			q.no_count += 1
 		end
+
+		q.save
 
 		render :json => { :status => "success" }
 	end
