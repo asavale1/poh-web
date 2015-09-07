@@ -21,4 +21,14 @@ class ApiController < ApplicationController
 
 		render :json => q.to_json
 	end
+
+	def get_results
+		q = Question.find(params[:question_id])
+
+		render :json => { 
+				:yes_count => q.yes_count,
+				:no_count => q.no_count,
+				:total => (q.yes_count + q.no_count)
+			}
+	end
 end
