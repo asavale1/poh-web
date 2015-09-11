@@ -28,7 +28,8 @@ class ApiController < ApplicationController
 		render :json => { 
 				:yes_count => q.yes_count,
 				:no_count => q.no_count,
-				:total => (q.yes_count + q.no_count)
+				:total => (q.yes_count + q.no_count),
+				:question => q.question
 			}
 	end
 end
