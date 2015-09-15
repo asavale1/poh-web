@@ -1,0 +1,50 @@
+h1 Home
+
+= button_to "New Admin", admin_new_path, :class => "button", :method => :get
+
+= button_to "Logout", admin_logout_path, :class => "button", :method => :get
+
+h3 Current Question Asked
+- unless @cur_question.nil?
+	h4 #{@cur_question.question}
+
+table
+	tr
+		th
+			h2 Question
+		th
+			h2 Asked
+		th
+			h2 Yes Count
+		th	
+			h2 No Count
+		th 
+			h2 Total Count
+		th 
+			h2 Created At
+		th
+			h2 Updated At	
+	- Question.all.each do |q|
+		tr
+			td
+				h4 #{q.question}
+			td 
+				h4 #{q.asked}
+			td
+				h4 #{q.yes_count}
+			td
+				h4 #{q.no_count}
+			td
+				h4 #{q.yes_count + q.no_count}
+			td
+				h4 #{q.created_at}
+			td
+				h4 #{q.updated_at}
+
+= form_for(:question, :url => {:controller => 'admins', :action => 'create_question'}) do |f|
+  div.field
+    = f.label :question
+    br
+    = f.text_field :question
+  div.actions
+    = f.submit

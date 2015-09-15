@@ -1,0 +1,9 @@
+h1 Login
+
+= form_tag(:action => 'login_attempt') do
+	= text_field_tag(:username_or_email)
+	br
+	= password_field_tag(:login_password)
+	br
+	= submit_tag("Log In")
+
