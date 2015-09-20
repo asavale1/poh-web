@@ -28,7 +28,7 @@ table
 		tr
 			td
 				h4 #{q.question}
-			td 
+			td
 				h4 #{q.asked}
 			td
 				h4 #{q.yes_count}
@@ -40,6 +40,8 @@ table
 				h4 #{q.created_at}
 			td
 				h4 #{q.updated_at}
+			td
+				 = button_to "Edit", admin_edit_question_path, class: "button", :method => :get, :params => {:id => q.id}
 
 = form_for(:question, :url => {:controller => 'admins', :action => 'create_question'}) do |f|
   div.field

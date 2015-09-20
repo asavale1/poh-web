@@ -11,7 +11,7 @@ class AdminsController < ApplicationController
 		@admin = Admin.new
 	end
 
-	def create
+	def create_admin
 		@admin = Admin.new(admin_params)
 
 		if @admin.save
@@ -39,6 +39,22 @@ class AdminsController < ApplicationController
 			flash[:color]= "invalid"
 			puts "\n\nQuestion not saved\n\n"
 		end
+		redirect_to :action => "home"
+	end
+
+	def edit_question
+		@q = Question.find(params[:id])
+		puts "\n\n\n"
+		puts params
+	end
+
+	def update_question
+		puts params
+		q = Question.find(params[:id])
+		q.question = params[:question]
+		q.asked = params[:asked]
+		q.save
+
 		redirect_to :action => "home"
 	end
 
