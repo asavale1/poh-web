@@ -1,0 +1,20 @@
+= render 'question/header'
+
+br
+div#question-edit
+  h1 Edit Question
+  br
+  = form_tag({:controller => 'question', :action => 'update'})
+    div.field
+      = label_tag :question
+      br
+      = text_field_tag :question, "#{@q.question}"
+    br
+    div.field
+    	= label_tag :asked
+    	br
+    	= select_tag(:asked, options_for_select([["True", true], ["False", false]], @q.asked))
+    = hidden_field_tag :id, @q.id
+    br
+    div.actions
+      = submit_tag

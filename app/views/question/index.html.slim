@@ -1,0 +1,41 @@
+= render 'question/header'
+
+br
+
+div#question-home
+	table
+		tr
+			th
+				h2 Question
+			th
+				h2 Asked
+			th
+				h2 Yes Count
+			th	
+				h2 No Count
+			th 
+				h2 Total Count
+			th 
+				h2 Created At
+			th
+				h2 Updated At	
+		- Question.all.order('created_at DESC').each do |q|
+			tr
+				td
+					h4 #{q.question}
+				td
+					h4 #{q.asked}
+				td
+					h4 #{q.yes_count}
+				td
+					h4 #{q.no_count}
+				td
+					h4 #{q.yes_count + q.no_count}
+				td
+					h4 #{q.created_at}
+				td
+					h4 #{q.updated_at}
+				td
+					 = link_to "Edit", admin_question_edit_path(:id => q.id), class: "button"
+					 br
+					 = link_to "Delete", admin_question_destroy_path(:id => q.id), class: 'button', :method => :post

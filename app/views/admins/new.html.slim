@@ -1,26 +1,30 @@
-h1 New Admin
+= render 'admins/header'
 
-= form_for(:admin, :url => {:controller => 'admins', :action => 'create_admin'}) do |f|
-  div.field
-    = f.label :username
-    br
-    = f.text_field :username
-  div.field
-   	= f.label :email
-   	br
-   	= f.text_field :email
-  div.field
-  	= f.label :password
-  	br
-  	= f.password_field :password
-  div.field
-  	= f.label :password_confirmation
-  	br
-  	= f.password_field :password_confirmation
-  div.actions
-    = f.submit
+div#admin-new
+  br
+  h1 New Admin
 
-- if @admin.errors.any?
-	ul.Signup_Errors
-		- for message_error in @admin.errors.full_messages
-			li = message_error
+  = form_for(:admin, :url => {:controller => 'admins', :action => 'create_admin'}) do |f|
+    div.field
+      = f.label :username
+      br
+      = f.text_field :username
+    div.field
+     	= f.label :email
+     	br
+     	= f.text_field :email
+    div.field
+    	= f.label :password
+    	br
+    	= f.password_field :password
+    div.field
+    	= f.label :password_confirmation
+    	br
+    	= f.password_field :password_confirmation
+    div.actions
+      = f.submit
+
+  - if @admin.errors.any?
+  	ul.Signup_Errors
+  		- for message_error in @admin.errors.full_messages
+  			li = message_error

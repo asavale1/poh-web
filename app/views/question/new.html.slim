@@ -1,0 +1,12 @@
+= render 'question/header'
+
+br
+
+div#question-new
+	= form_for(:question, :url => {:controller => 'question', :action => 'create'}) do |f|
+	  div.field
+	    = f.label :question
+	    br
+	    = f.text_field :question
+	  div.actions
+	    = f.submit

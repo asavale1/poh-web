@@ -3,15 +3,21 @@ Rails.application.routes.draw do
   match '/api/post_answer', to: 'api#post_answer', via: 'post'
   match '/api/get_question', to: 'api#get_question', via: 'get'
   match '/api/get_results', to: 'api#get_results', via: 'get'
+  
   match '/admin', to: 'admins#home', via: 'get'
   match '/admin/new', to: 'admins#new', via: 'get'
   match '/admin/create', to: 'admins#create_admin', via: 'post'
-  match '/admin/create_question', to:'admins#create_question', via: 'post'
-  match '/admin/edit_question', to: 'admins#edit_question', via: 'get'
-  match '/admin/update_question', to: 'admins#update_question', via: 'post'
   match '/admin/login', to: 'admins#login', via: 'get'
   match '/admin/login_attempt', to: 'admins#login_attempt', via: 'post'
   match '/admin/logout', to: 'admins#logout', via: 'get'
+ 
+  match '/admin/question/new', to: 'question#new', via: 'get'
+  match '/admin/question/create', to: 'question#create', via: 'post'
+  match '/admin/question/destroy', to: 'question#destroy', via: 'post'
+  match '/admin/question/edit', to: 'question#edit', via: 'get'
+  match '/admin/question/update', to: 'question#update', via: 'post'
+  match '/admin/question', to: 'question#index', via: 'get'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

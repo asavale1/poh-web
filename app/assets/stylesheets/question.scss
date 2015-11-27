@@ -1,8 +1,7 @@
-// Place all the styles related to the admins controller here.
+// Place all the styles related to the question controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-ul#admin-header{
+ul#question-header{
 	background-color: #000;
 	height: 50px;
 	text-align: center;
@@ -17,19 +16,23 @@ ul#admin-header{
 	}
 }
 
-div#admin-home{
+div#question-home{
 	text-align: center;
-	width: 100%;
-
 	table{
-		margin: 0 auto;
-		td,th{
-			width: 25%;
+		width: 100%;
+		td{
+			width: 12%;
 		}
 	}
 }
 
-div#admin-new{
+div#question-new{
 	text-align: center;
-	width: 100%;
+	table{
+		width: 100%;
+	}
+}
+
+div#question-edit{
+	text-align: center;
 }
