@@ -24,7 +24,7 @@ class ApiController < ApplicationController
 
 	def get_results
 		q = nil
-		if params[:question_id] == -1
+		if params[:question_id] =~ /-1/
 			q = Question.where(:asked => true).order("created_at DESC").first
 		else
 			q = Question.find(params[:question_id])
