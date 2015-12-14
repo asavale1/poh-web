@@ -23,7 +23,12 @@ class ApiController < ApplicationController
 	end
 
 	def get_results
-		q = Question.find(params[:question_id])
+		q = nil
+		if params[:question_id] == -1
+			q = Question.where(:asked => true).order("created_at DESC").first
+		else
+			q = Question.find(params[:question_id])
+		end
 
 		render :json => { 
 				:yes_count => q.yes_count,
