@@ -18,7 +18,15 @@ Rails.application.routes.draw do
   match '/admin/question/update', to: 'question#update', via: 'post'
   match '/admin/question', to: 'question#index', via: 'get'
 
-
+  namespace :api, constraints: {format: :json} do
+    namespace :v1 do
+      scope :question do
+        match '/', to: 'question#get_question', via: 'get'
+        match '/', to: 'question#post_answer', via: 'post'
+        match '/:id', to: 'question#get_results', via: 'get'
+      end
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
