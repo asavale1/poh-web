@@ -1,5 +1,5 @@
 class Api::V1::QuestionController < Api::V1::BaseController
-	skip_before_filter :verify_authenticity_token, :only => [:post_answer, :get_question]
+	skip_before_filter :verify_authenticity_token, :only => [:post_answer, :get_question, :request_question]
 
 	def post_answer
 		puts params
@@ -31,6 +31,13 @@ class Api::V1::QuestionController < Api::V1::BaseController
 				:total => (q.yes_count + q.no_count),
 				:question => q.question
 			}, status: 200
+	end
+
+	def request_question
+		puts "\n\n"
+		puts params
+		puts "\n\n"
+		head 200, content_type: "text/html"
 	end
 
 

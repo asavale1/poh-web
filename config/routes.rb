@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         match '/', to: 'question#get_question', via: 'get'
         match '/', to: 'question#post_answer', via: 'post'
         match '/:id', to: 'question#get_results', via: 'get'
+        match '/request', to: 'question#request_question', via: 'post'
       end
     end
   end
