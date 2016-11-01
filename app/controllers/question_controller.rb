@@ -9,6 +9,7 @@ class QuestionController < ApplicationController
 
 	def create
 		@question = Question.new(question_params)
+		@question.reviewed = true
 		if @question.save
 			flash[:notice] = "You signed up successfully"
       flash[:color]= "valid"

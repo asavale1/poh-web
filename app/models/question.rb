@@ -9,5 +9,6 @@ class Question < ActiveRecord::Base
 		self.yes_count ||= 0
 		self.no_count ||= 0
 		self.asked ||= false
+		self.reviewed ||= false
 	end
 end

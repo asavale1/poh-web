@@ -2,7 +2,6 @@ class Api::V1::QuestionController < Api::V1::BaseController
 	skip_before_filter :verify_authenticity_token, :only => [:post_answer, :get_question, :request_question]
 
 	def post_answer
-		puts params
 		q = Question.find(params[:question_id])
 		
 		if(params[:answer] =~ /yes/)
@@ -37,6 +36,10 @@ class Api::V1::QuestionController < Api::V1::BaseController
 		puts "\n\n"
 		puts params
 		puts "\n\n"
+		
+		q = Question.new({:question => params[:question]})
+		q.save
+
 		head 200, content_type: "text/html"
 	end
 
