@@ -39,20 +39,16 @@ div.container
 				thead
 					tr
 						th Question
+						th Reviewed
 						th Asked
-						th Yes Count
-						th No Count
-						th Total Count
 						th Created At
 						th Updated At	
 				tbody
 					- Question.where(:reviewed => true, :asked => false).order('created_at DESC').each do |q|
 						tr
 							td #{q.question}
+							td #{q.reviewed}
 							td #{q.asked}
-							td #{q.yes_count}
-							td #{q.no_count}
-							td #{q.yes_count + q.no_count}
 							td #{q.created_at.strftime("%m/%d/%y %k:%M")}
 							td #{q.updated_at.strftime("%m/%d/%y %k:%M")}
 							td
