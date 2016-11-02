@@ -15,7 +15,7 @@ div.container
 						th Created At
 						th Updated At	
 				tbody
-					- Question.where(:reviewed => false).order('created_at DESC').each do |q|
+					- Question.where(:reviewed => false).order(:created_at).each do |q|
 						tr
 							td #{q.question}
 							td #{q.reviewed}
@@ -44,7 +44,7 @@ div.container
 						th Created At
 						th Updated At	
 				tbody
-					- Question.where(:reviewed => true, :asked => false).order('created_at DESC').each do |q|
+					- Question.where(:reviewed => true, :asked => false).order(:created_at).each do |q|
 						tr
 							td #{q.question}
 							td #{q.reviewed}

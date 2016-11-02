@@ -16,7 +16,7 @@ class Api::V1::QuestionController < Api::V1::BaseController
 	end
 
 	def get_question
-		q = Question.where(:asked => false).order(:created_at).first
+		q = Question.where(:asked => false, :reviewed => true).order(:created_at).first
 
 		render :json => q.to_json, status: 200
 	end
