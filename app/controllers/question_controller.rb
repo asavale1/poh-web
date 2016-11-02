@@ -38,7 +38,12 @@ class QuestionController < ApplicationController
 		begin
 			q = Question.find(params[:id])
 			q.question = params[:question]
-			q.asked = params[:asked]
+			q.reviewed = params[:reviewed]
+			if params[:asked]
+				q.asked = params[:asked] if q.reviewed 
+			else 
+				q.asked = params[:asked]
+			end
 			q.save
 		rescue Exception => e
 			puts e.message

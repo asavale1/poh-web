@@ -2,11 +2,13 @@
 
 br
 
-div#question-new
-	= form_for(:question, :url => {:controller => 'question', :action => 'create'}) do |f|
-	  div.field
-	    = f.label :question
-	    br
-	    = f.text_field :question
-	  div.actions
-	    = f.submit
+div.container
+	div.row
+		= form_for(:question, :url => {:controller => 'question', :action => 'create'}, class: "col s12") do |f|
+			div.row
+				div.col.s12
+					= f.text_field :question, placeholder: "Enter question"
+					label for="question" Question
+			div.row
+				div.col.s12
+					= f.submit nil,  class: "waves-effect waves-light btn"

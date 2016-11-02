@@ -1,20 +1,41 @@
 = render 'question/header'
 
 br
-div#question-edit
-  h1 Edit Question
-  br
-  = form_tag({:controller => 'question', :action => 'update'})
-    div.field
-      = label_tag :question
-      br
-      = text_field_tag :question, "#{@q.question}"
-    br
-    div.field
-    	= label_tag :asked
-    	br
-    	= select_tag(:asked, options_for_select([["True", true], ["False", false]], @q.asked))
-    = hidden_field_tag :id, @q.id
-    br
-    div.actions
-      = submit_tag
+div.container
+  div.row
+    = form_tag({:controller => "question", :action => "update"}, class: "col s12")
+      = hidden_field_tag :id, @q.id
+      div.row
+        div.col.s12
+          = text_field_tag :question, "#{@q.question}", placeholder: "Enter question"
+          label for="question" Question
+      div.row
+        div.col.s6
+          label Reviewed
+          = select_tag(:reviewed, options_for_select([["True", true], ["False", false]], @q.reviewed))
+        div.col.s6
+          label Asked
+          = select_tag(:asked, options_for_select([["True", true], ["False", false]], @q.asked))
+      div.row
+        div.col.s12
+          = submit_tag "Update Question", class: "waves-effect waves-light btn"
+          
+
+  
+/  div#question-edit
+/    h1 Edit Question
+/    br
+/    = form_tag({:controller => 'question', :action => 'update'})
+/      div.field
+/        = label_tag :question
+/        br
+/        = text_field_tag :question, "#{@q.question}"
+/      br
+/      div.field
+/      	= label_tag :asked
+/      	br
+/      	= select_tag(:asked, options_for_select([["True", true], ["False", false]], @q.asked))
+/      = hidden_field_tag :id, @q.id
+/      br
+/      div.actions
+/        = submit_tag

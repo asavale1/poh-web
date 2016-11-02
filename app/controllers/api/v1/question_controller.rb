@@ -22,7 +22,7 @@ class Api::V1::QuestionController < Api::V1::BaseController
 	end
 
 	def get_results
-		q = (params[:id].to_i == -1) ? Question.where(:asked => true).order("updated_at DESC").first : Question.find(params[:id])
+		q = (params[:id].to_i == -1) ? Question.where(:asked => true).order("created_at DESC").first : Question.find(params[:id])
 		
 		render :json => { 
 				:yes_count => q.yes_count,
@@ -33,9 +33,6 @@ class Api::V1::QuestionController < Api::V1::BaseController
 	end
 
 	def request_question
-		puts "\n\n"
-		puts params
-		puts "\n\n"
 		
 		q = Question.new({:question => params[:question]})
 		q.save

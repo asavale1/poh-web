@@ -1,7 +1,12 @@
-ul#admin-header
-	li
-		= link_to "Home", admin_path
-	li
-		= link_to "Questions", admin_question_path
-	li 
-		= link_to "Logout", admin_logout_path
+javascript:
+	$(document).ready(function() {
+    $('select').material_select();
+	});
+
+nav
+	div.nav-wrapper
+		a href="#" class="brand-logo" Polls of Humanity
+		ul id="nav-mobile" class="right hide-on-med-and-down"
+			li = link_to "Home", admin_path
+			li = link_to "Questions", admin_question_path
+			li = link_to "Logout", admin_logout_path
