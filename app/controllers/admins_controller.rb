@@ -3,7 +3,7 @@ class AdminsController < ApplicationController
 	before_filter :save_login_state, :only => [:login, :login_attempt]
 
 	def home
-		@cur_question = Question.where(:asked => false).order(:created_at).first
+		@cur_question = Question.where(:reviewed=>true, :asked => false).order(:created_at).first
 	end
 
 	def new

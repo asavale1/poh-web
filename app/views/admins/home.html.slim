@@ -1,27 +1,72 @@
 = render 'admins/header'
-div#admin-home
-	h1 Home
-	= link_to "New Admin", admin_new_path
-	br
-	br
-	h3 Current Question Asked
-	br
-	- unless @cur_question.nil?
-		table
-			tr
-				th Question Id
-				th Question
-				th Yes Count
-				th No Count
-			tr
-				td 
-					h4 #{@cur_question.id}
-				td
-					h4 #{@cur_question.question}
-				td
-					h4 #{@cur_question.yes_count}
-				td
-					h4 #{@cur_question.no_count}
+
+div.container
+	div.row
+		div.col.s12
+			h1.center-align Current Question Asked
+	div.row
+		div.col.s12
+			h3.center-align #{@cur_question.question}
+	div.row
+		div.col.s4
+			h5.center-align Yes Count
+		div.col.s4
+			h5.center-align No Count
+		div.col.s4
+			h5.center-align Total
+	div.row
+		div.col.s4
+			h5.center-align #{@cur_question.yes_count}
+		div.col.s4
+			h5.center-align #{@cur_question.no_count}
+		div.col.s4
+			h5.center-align #{@cur_question.yes_count + @cur_question.no_count}
+	div.row
+		div.col.s6
+			h5.center-align Created: #{@cur_question.created_at.strftime("%m/%d/%y %k:%M")}
+		div.col.s6
+			h5.center-align Updated: #{@cur_question.updated_at.strftime("%m/%d/%y %k:%M")}
+			/table class="highlight responsive-table"
+			/	thead
+			/		tr
+			/			th Question
+			/			th Yes Count
+			/			th No Count
+			/			th Total Count
+			/			th Created At
+			/			th Updated At	
+			/	tbody
+			/		tr
+			/			td #{@cur_question.question}
+			/			td #{@cur_question.yes_count}
+			/			td #{@cur_question.no_count}
+			/			td #{@cur_question.yes_count + @cur_question.no_count}
+			/			td #{@cur_question.created_at.strftime("%m/%d/%y %k:%M")}
+			/			td #{@cur_question.updated_at.strftime("%m/%d/%y %k:%M")}
+
+/div#admin-home
+/	h1 Home
+/	= link_to "New Admin", admin_new_path
+/	br
+/	br
+/	h3 Current Question Asked
+/	br
+/	- unless @cur_question.nil?
+/		table
+/			tr
+/				th Question Id
+/				th Question
+/				th Yes Count
+/				th No Count
+/			tr
+/				td 
+/					h4 #{@cur_question.id}
+/				td
+/					h4 #{@cur_question.question}
+/				td
+/					h4 #{@cur_question.yes_count}
+/				td
+/					h4 #{@cur_question.no_count}
 
 
 
