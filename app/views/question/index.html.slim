@@ -24,11 +24,11 @@ div.container
 							td
 								div.row
 									div.col.s12
-										a class="btn-floating red" href="#{admin_question_edit_path(:id => q.id)}"
+										a class="btn-floating light-green darken-3" href="#{admin_question_edit_path(:id => q.id)}"
 											i class="material-icons small" mode_edit
 								div.row
 									div.col.s12
-										a class="btn-floating red" href="#{admin_question_destroy_path(:id => q.id)}" data-method="post"
+										a class="btn-floating red darken-3" href="#{admin_question_destroy_path(:id => q.id)}" data-method="post"
 											i class="material-icons small" delete
 	div.row
 		div.col.12
@@ -44,8 +44,10 @@ div.container
 						th Created At
 						th Updated At	
 				tbody
+					- iter = 0
+					
 					- Question.where(:reviewed => true, :asked => false).order(:created_at).each do |q|
-						tr
+						- table_row = capture do
 							td #{q.question}
 							td #{q.reviewed}
 							td #{q.asked}
@@ -54,12 +56,19 @@ div.container
 							td
 								div.row
 									div.col.s12
-										a class="btn-floating red" href="#{admin_question_edit_path(:id => q.id)}"
+										a class="btn-floating light-green darken-3" href="#{admin_question_edit_path(:id => q.id)}"
 											i class="material-icons small" mode_edit
 								div.row
 									div.col.s12
-										a class="btn-floating red" href="#{admin_question_destroy_path(:id => q.id)}" data-method="post"
+										a class="btn-floating red darken-3" href="#{admin_question_destroy_path(:id => q.id)}" data-method="post"
 											i class="material-icons small" delete
+						- if iter == 0
+							tr.light-green.lighten-3
+								= table_row
+						- elsif iter == 1
+							tr.amber.lighten-3
+								= table_row
+						- iter += 1
 	div.row
 		div.col.12
 			h5.left-align Questions Asked
@@ -88,9 +97,9 @@ div.container
 							td
 								div.row
 									div.col.s12
-										a class="btn-floating red" href="#{admin_question_edit_path(:id => q.id)}"
+										a class="btn-floating light-green darken-3" href="#{admin_question_edit_path(:id => q.id)}"
 											i class="material-icons small" mode_edit
 								div.row
 									div.col.s12
-										a class="btn-floating red" href="#{admin_question_destroy_path(:id => q.id)}" data-method="post"
+										a class="btn-floating red darken-3" href="#{admin_question_destroy_path(:id => q.id)}" data-method="post"
 											i class="material-icons small" delete

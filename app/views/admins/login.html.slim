@@ -1,9 +1,19 @@
-h1 Login
 
-= form_tag(:action => 'login_attempt') do
-	= text_field_tag(:username_or_email)
-	br
-	= password_field_tag(:login_password)
-	br
-	= submit_tag("Log In")
+
+div.container
+	div.row
+		div.col.s12
+			h1.center-align Admin Dashboard
+			= form_tag(:action => 'login_attempt') do
+				div.row
+					div.col.s12
+						= text_field_tag(:username_or_email, nil, placeholder: "username_or_email")
+						label for="username_or_email" Username or Email
+				div.row
+					div.col.s12
+						= password_field_tag(:login_password, nil, placeholder: "password")
+						label for="login_password" Password
+				div.row
+					div.col.s12
+						= submit_tag("Log In", class: "btn waves-effect waves-light")
 
