@@ -41,6 +41,9 @@ div.container
 						th Question
 						th Reviewed
 						th Asked
+						th Yes Count
+						th No Count
+						th Total Count
 						th Created At
 						th Updated At	
 				tbody
@@ -51,6 +54,9 @@ div.container
 							td #{q.question}
 							td #{q.reviewed}
 							td #{q.asked}
+							td #{q.yes_count}
+							td #{q.no_count}
+							td #{q.yes_count + q.no_count}
 							td #{q.created_at.strftime("%m/%d/%y %k:%M")}
 							td #{q.updated_at.strftime("%m/%d/%y %k:%M")}
 							td
@@ -67,6 +73,9 @@ div.container
 								= table_row
 						- elsif iter == 1
 							tr.amber.lighten-3
+								= table_row
+						- else
+							tr
 								= table_row
 						- iter += 1
 	div.row

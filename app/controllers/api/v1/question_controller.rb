@@ -35,9 +35,9 @@ class Api::V1::QuestionController < Api::V1::BaseController
 	def request_question
 		
 		q = Question.new({:question => params[:question]})
-		q.save
+		(q.save) ? head(200, content_type: "text/html") : head(400, content_type: "text/html")
 
-		head 200, content_type: "text/html"
+		
 	end
 
 
