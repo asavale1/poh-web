@@ -1,0 +1,66 @@
+= render 'question/header'
+
+br
+div.container
+	div.row
+		div.col.s12
+			h5.left-align Questions Pending Review
+	div.row
+		div.col.s12
+			table class="highlight responsive-table"
+				thead
+					tr
+						th Question
+						th Reviewed
+						th Created At
+						th Updated At	
+				tbody
+					- Question.where(:reviewed => false).order(:created_at).each do |q|
+						tr
+							td #{q.question}
+							td #{q.reviewed}
+							td #{q.created_at.strftime("%m/%d/%y %k:%M")}
+							td #{q.updated_at.strftime("%m/%d/%y %k:%M")}
+							td
+								div.row
+									div.col.s12
+										a class="btn-floating light-green darken-3" href="#{admin_question_edit_path(:id => q.id)}"
+											i class="material-icons small" mode_edit
+								div.row
+									div.col.s12
+										a class="btn-floating red darken-3" href="#{admin_question_destroy_path(:id => q.id)}" data-method="post"
+											i class="material-icons small" delete
+	div.row
+		div.col.12
+			h5.left-align Questions Asked
+	div.row
+		div.col.s12
+			table class="highlight responsive-table"
+				thead
+					tr
+						th Question
+						th Asked
+						th Yes Count
+						th No Count
+						th Total Count
+						th Created At
+						th Updated At	
+				tbody
+					- Question.where(:reviewed => true, :asked => true).order('created_at DESC').each do |q|
+						tr
+							td #{q.question}
+							td #{q.asked}
+							td #{q.yes_count}
+							td #{q.no_count}
+							td #{q.yes_count + q.no_count}
+							td #{q.created_at.strftime("%m/%d/%y %k:%M")}
+							td #{q.updated_at.strftime("%m/%d/%y %k:%M")}
+							td
+								div.row
+									div.col.s12
+										a class="btn-floating light-green darken-3" href="#{admin_question_edit_path(:id => q.id)}"
+											i class="material-icons small" mode_edit
+								div.row
+									div.col.s12
+										a class="btn-floating red darken-3" href="#{admin_question_destroy_path(:id => q.id)}" data-method="post"
+											i class="material-icons small" delete

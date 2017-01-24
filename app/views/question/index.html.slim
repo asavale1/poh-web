@@ -3,8 +3,16 @@
 br
 div.container
 	div.row
+		div.col.s4.offset-s4 style="text-align: center"
+			a.waves-effect.waves-light.btn-large href="#{admin_question_notify_path}"
+				i.material-icons.right send
+				| Notify Users of Questions</a>
+		div.col.s4
+			p
+				strong Last Sent: #{Notification.last.created_at}
+	div.row
 		div.col.s12
-			h5.left-align Questions Pending Review
+			h5.left-align Current Question
 	div.row
 		div.col.s12
 			table class="highlight responsive-table"
@@ -12,15 +20,17 @@ div.container
 					tr
 						th Question
 						th Reviewed
-						th Created At
-						th Updated At	
+						th Yes Count
+						th No Count
+						th Total Count
 				tbody
-					- Question.where(:reviewed => false).order(:created_at).each do |q|
-						tr
+					- Question.where(:current => true).each do |q|
+						- table_row = capture do
 							td #{q.question}
 							td #{q.reviewed}
-							td #{q.created_at.strftime("%m/%d/%y %k:%M")}
-							td #{q.updated_at.strftime("%m/%d/%y %k:%M")}
+							td #{q.yes_count}
+							td #{q.no_count}
+							td #{q.yes_count + q.no_count}
 							td
 								div.row
 									div.col.s12
@@ -30,9 +40,11 @@ div.container
 									div.col.s12
 										a class="btn-floating red darken-3" href="#{admin_question_destroy_path(:id => q.id)}" data-method="post"
 											i class="material-icons small" delete
+						tr
+							= table_row
 	div.row
 		div.col.12
-			h5.left-align Questions Queued
+			h5.left-align Questions Approved
 	div.row
 		div.col.s12
 			table class="highlight responsive-table"
@@ -49,7 +61,7 @@ div.container
 				tbody
 					- iter = 0
 					
-					- Question.where(:reviewed => true, :asked => false).order(:created_at).each do |q|
+					- Question.where(:reviewed => true, :asked => false, :current => false).order(:created_at).each do |q|
 						- table_row = capture do
 							td #{q.question}
 							td #{q.reviewed}
@@ -68,47 +80,47 @@ div.container
 									div.col.s12
 										a class="btn-floating red darken-3" href="#{admin_question_destroy_path(:id => q.id)}" data-method="post"
 											i class="material-icons small" delete
-						- if iter == 0
-							tr.light-green.lighten-3
-								= table_row
-						- elsif iter == 1
-							tr.amber.lighten-3
-								= table_row
-						- else
-							tr
-								= table_row
-						- iter += 1
-	div.row
-		div.col.12
-			h5.left-align Questions Asked
-	div.row
-		div.col.s12
-			table class="highlight responsive-table"
-				thead
-					tr
-						th Question
-						th Asked
-						th Yes Count
-						th No Count
-						th Total Count
-						th Created At
-						th Updated At	
-				tbody
-					- Question.where(:reviewed => true, :asked => true).order('created_at DESC').each do |q|
+						/- if iter == 0
+						/	tr.light-green.lighten-3
+						/		= table_row
+						/- elsif iter == 1
+						/	tr.amber.lighten-3
+						/		= table_row
+						/- else
 						tr
-							td #{q.question}
-							td #{q.asked}
-							td #{q.yes_count}
-							td #{q.no_count}
-							td #{q.yes_count + q.no_count}
-							td #{q.created_at.strftime("%m/%d/%y %k:%M")}
-							td #{q.updated_at.strftime("%m/%d/%y %k:%M")}
-							td
-								div.row
-									div.col.s12
-										a class="btn-floating light-green darken-3" href="#{admin_question_edit_path(:id => q.id)}"
-											i class="material-icons small" mode_edit
-								div.row
-									div.col.s12
-										a class="btn-floating red darken-3" href="#{admin_question_destroy_path(:id => q.id)}" data-method="post"
-											i class="material-icons small" delete
+							= table_row
+						- iter += 1
+/	div.row
+/		div.col.12
+/			h5.left-align Questions Asked
+/	div.row
+/		div.col.s12
+/			table class="highlight responsive-table"
+/				thead
+/					tr
+/						th Question
+/						th Asked
+/						th Yes Count
+/						th No Count
+/						th Total Count
+/						th Created At
+/						th Updated At	
+/				tbody
+/					- Question.where(:reviewed => true, :asked => true).order('created_at DESC').each do |q|
+/						tr
+/							td #{q.question}
+/							td #{q.asked}
+/							td #{q.yes_count}
+/							td #{q.no_count}
+/							td #{q.yes_count + q.no_count}
+/							td #{q.created_at.strftime("%m/%d/%y %k:%M")}
+/							td #{q.updated_at.strftime("%m/%d/%y %k:%M")}
+/							td
+/								div.row
+/									div.col.s12
+/										a class="btn-floating light-green darken-3" href="#{admin_question_edit_path(:id => q.id)}"
+/											i class="material-icons small" mode_edit
+/								div.row
+/									div.col.s12
+/										a class="btn-floating red darken-3" href="#{admin_question_destroy_path(:id => q.id)}" data-method="post"
+/											i class="material-icons small" delete

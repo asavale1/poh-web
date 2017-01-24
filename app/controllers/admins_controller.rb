@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-	before_filter :authenticate_admin, :only => [:home, :create, :new ]
+	before_filter :authenticate_admin, :only => [:home, :create_admin, :new ]
 	before_filter :save_login_state, :only => [:login, :login_attempt]
 
 	def home

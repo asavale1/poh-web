@@ -2,6 +2,7 @@
 # => yes_count 	: integer
 # => no_count	: integer
 # => asked		: boolean
+# => current : boolean
 class Question < ActiveRecord::Base
 	validates :question, presence: true
 
@@ -10,5 +11,6 @@ class Question < ActiveRecord::Base
 		self.no_count ||= 0
 		self.asked ||= false
 		self.reviewed ||= false
+		self.current ||= false
 	end
 end

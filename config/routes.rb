@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   match '/admin/question/edit', to: 'question#edit', via: 'get'
   match '/admin/question/update', to: 'question#update', via: 'post'
   match '/admin/question', to: 'question#index', via: 'get'
+  match '/admin/question/view', to: 'question#view', via: 'get'
+  match '/admin/question/notify', to: 'question#send_notification', via: 'get'
+
 
   namespace :api, constraints: {format: :json} do
     namespace :v1 do
@@ -25,6 +28,10 @@ Rails.application.routes.draw do
         match '/', to: 'question#post_answer', via: 'post'
         match '/:id', to: 'question#get_results', via: 'get'
         match '/request', to: 'question#request_question', via: 'post'
+      end
+
+      scope :android do
+        match '/register', to: 'firebase#register', via: 'post'
       end
     end
   end

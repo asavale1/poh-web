@@ -3,7 +3,10 @@
 div.container
 	ul#question-header
 		li
+			= link_to "Home", admin_question_path, class: "waves-effect waves-light btn"
+		li
 			= link_to "New", admin_question_new_path, class: "waves-effect waves-light btn"
 		li
-			= link_to "View", admin_question_path, class: "waves-effect waves-light btn"
+			= link_to "View", admin_question_view_path, class: "waves-effect waves-light btn"
+		
 			

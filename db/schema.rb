@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101033213) do
+ActiveRecord::Schema.define(version: 20170124034638) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20161101033213) do
     t.datetime "updated_at",         null: false
   end
 
+  create_table "firebases", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "token"
+    t.boolean  "active"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string   "question"
     t.integer  "yes_count"
@@ -30,6 +42,7 @@ ActiveRecord::Schema.define(version: 20161101033213) do
     t.datetime "updated_at", null: false
     t.boolean  "asked"
     t.boolean  "reviewed"
+    t.boolean  "current"
   end
 
 end
