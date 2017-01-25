@@ -1,4 +1,9 @@
 class QuestionController < ApplicationController
+	before_filter :authenticate_admin
+	before_filter :save_login_state, :only => [:login, :login_attempt]
+
+	include FirebaseHelper
+
 	def index
 
 	end
@@ -20,6 +25,15 @@ class QuestionController < ApplicationController
 		redirect_to :action => :index
 	end
 
+	def send_notification
+		require "firebase_helper"
+		FirebaseHelper.make_request()
+		Notification.new.save
+
+		redirect_to :action => "index"
+
+	end
+
 	def destroy
 		begin
 			Question.find(params[:id]).destroy
@@ -35,10 +49,13 @@ class QuestionController < ApplicationController
 	end
 
 	def update
+
 		begin
 			q = Question.find(params[:id])
 			q.question = params[:question]
 			q.reviewed = params[:reviewed]
+			q.current = params[:current]
+
 			if params[:asked]
 				q.asked = params[:asked] if q.reviewed 
 			else 

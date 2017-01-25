@@ -10,12 +10,15 @@ div.container
           = text_field_tag :question, "#{@q.question}", placeholder: "Enter question"
           label for="question" Question
       div.row
-        div.col.s6
+        div.col.s4
           label Reviewed
           = select_tag(:reviewed, options_for_select([["True", true], ["False", false]], @q.reviewed))
-        div.col.s6
+        div.col.s4
           label Asked
           = select_tag(:asked, options_for_select([["True", true], ["False", false]], @q.asked))
+        div.col.s4
+          label Current
+          = select_tag(:current, options_for_select([["True", true], ["False", false]], @q.current))
       div.row
         div.col.s12
           = submit_tag "Update Question", class: "waves-effect waves-light btn light-green darken-3"

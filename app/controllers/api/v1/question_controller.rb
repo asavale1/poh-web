@@ -16,13 +16,20 @@ class Api::V1::QuestionController < Api::V1::BaseController
 	end
 
 	def get_question
-		q = Question.where(:asked => false, :reviewed => true).order(:created_at).first
+		q = Question.where(:current => true).first#Question.where(:asked => false, :reviewed => true).order(:created_at).first
 
-		render :json => q.to_json, status: 200
+		(!q.nil?) ? render(:json => q.to_json, status: 200) : head(400, content_type: "text/html")
+		
 	end
 
 	def get_results
-		q = (params[:id].to_i == -1) ? Question.where(:asked => true).order("created_at DESC").first : Question.find(params[:id])
+		begin
+			q = Question.find(params[:id])
+			
+		rescue
+			q = Question.where(:asked => true).order("created_at DESC").first
+		end
+		#q = (params[:id].to_i == -1) ? Question.where(:asked => true).order("created_at DESC").first : Question.find(params[:id])
 		
 		render :json => { 
 				:yes_count => q.yes_count,
