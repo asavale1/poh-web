@@ -22,13 +22,6 @@ ActiveRecord::Schema.define(version: 20170124034638) do
     t.datetime "updated_at",         null: false
   end
 
-  create_table "firebases", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text     "token"
-    t.boolean  "active"
-  end
-
   create_table "notifications", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

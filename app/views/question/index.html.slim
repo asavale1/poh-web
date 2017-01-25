@@ -9,7 +9,8 @@ div.container
 				| Notify Users of Questions</a>
 		div.col.s4
 			p
-				strong Last Sent: #{Notification.last.created_at}
+				- if !Notification.last.nil?
+					strong Last Sent: #{Notification.last.created_at}
 	div.row
 		div.col.s12
 			h5.left-align Current Question
