@@ -62,7 +62,7 @@ div.container
 				tbody
 					- iter = 0
 					
-					- Question.where(:reviewed => true, :asked => false, :current => false).order(:created_at).each do |q|
+					- Question.where(:reviewed => true, :asked => false).order(:created_at).each do |q|
 						- table_row = capture do
 							td #{q.question}
 							td #{q.reviewed}

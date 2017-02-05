@@ -30,13 +30,13 @@ class Api::V1::QuestionController < Api::V1::BaseController
 			q = Question.where(:asked => true).order("created_at DESC").first
 		end
 		#q = (params[:id].to_i == -1) ? Question.where(:asked => true).order("created_at DESC").first : Question.find(params[:id])
+		(q.nil?) ? head(400, content_type: "text/html") : render(:json => { 
+																																:yes_count => q.yes_count,
+																																:no_count => q.no_count,
+																																:total => (q.yes_count + q.no_count),
+																																:question => q.question
+																															}, status: 200)
 		
-		render :json => { 
-				:yes_count => q.yes_count,
-				:no_count => q.no_count,
-				:total => (q.yes_count + q.no_count),
-				:question => q.question
-			}, status: 200
 	end
 
 	def request_question

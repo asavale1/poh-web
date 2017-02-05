@@ -11,5 +11,6 @@ class Question < ActiveRecord::Base
 		self.no_count ||= 0
 		self.asked ||= false
 		self.reviewed ||= false
+		self.current ||= false
 	end
 end
